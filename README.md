@@ -14,23 +14,23 @@ This repository automates the configuration of a new Ubuntu desktop environment.
 ---
 
 ## 📂 Directory Structure
-
 ```
 .
-├── detect-os.sh              # Detects and validates supported OS (Ubuntu)
-├── init.sh                   # Entry point for setting up the system
-├── packages.conf             # Central config file for app and package lists
-
-├── gnome/
-│   ├── gnome-extension.sh    # Installs GNOME extensions
-│   ├── gnome-hotkeys.sh      # Sets custom keyboard shortcuts
-│   ├── gnome-settings.dconf  # GNOME settings dump (imported by script)
-│   └── gnome-settings.sh     # Loads GNOME settings from .dconf
-
-├── ubuntu/
-│   ├── ubuntu-ext-packages.sh # Adds external repos (Chrome, Spotify, etc.)
-│   ├── ubuntu-util.sh         # Utility functions for Ubuntu environment
-│   └── ubuntu.sh              # Base Ubuntu setup (apt update, essential tools)
+├── init.sh                                # Entry point script to start setup
+├── detect-os.sh                           # Detects the OS type (e.g., Ubuntu)
+├── packages.conf                          # Central configuration for packages
+├── LICENSE
+├── README.md
+├── gnome/                                 # GNOME desktop environment setup
+│   ├── gnome-extensions.sh                # Installs GNOME Shell extensions
+│   ├── gnome-hotkeys.sh                   # Configures GNOME hotkeys
+│   ├── gnome-settings.dconf               # GNOME settings export/import file
+│   └── gnome-setttings.sh                 # Applies GNOME settings via dconf
+└── ubuntu/                                # Ubuntu-specific setup scripts
+    ├── ubuntu.sh                          # Main Ubuntu setup script
+    ├── ubuntu-util.sh                     # Helper functions for Ubuntu scripts
+    ├── ubuntu-programming-language-install.sh  # Installs dev tools (Python, Node.js, etc.)
+    └── ubuntu-external-packages.sh        # Installs external packages and PPAs
 ```
 
 ---
@@ -64,17 +64,11 @@ You can control which packages to install by editing `packages.conf`.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/ubuntu-desktop-setup.git
-   cd ubuntu-desktop-setup
+   git clone https://github.com/ajay007e/devkit.git
+   cd devkit
    ```
 
-2. **Make scripts executable (optional):**
-
-   ```bash
-   chmod +x init.sh
-   ```
-
-3. **Run the main setup script:**
+2. **Run the main setup script:**
 
    ```bash
    ./init.sh
