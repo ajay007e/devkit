@@ -14,19 +14,20 @@ fi
 
 source ./packages.conf
 
-animate_progress "Starting System Setup"
+animate_progress "🎯 Starting System Setup"
 
-animate_progress "Updating System"
-sudo apt-get update -qq && sudo apt-get upgrade -y -qq
+animate_progress "🔧 Updating System"
+cmd='sudo apt-get update && sudo apt-get upgrade -y'
+watch_execution "✅ System updated successfully!" bash -c "$cmd"
 
 # Install only missing packages
-animate_progress "Installing Programming Languages"
+animate_progress "👨‍💻 Setting up Programming Languages "
 . "$SCRIPT_DIR/ubuntu-programming-language-install.sh"
 
-animate_progress "Installing System Utilities"
+animate_progress "🧩 Installing System Utilities"
 install_packages "${SYSTEM_UTILS[@]}"
 
-animate_progress "Installing Development Tools"
+animate_progress "🛠️ Installing Development Tools"
 install_packages "${DEV_TOOLS[@]}"
 
 # animate_progress "Installing System Maintenance Tools"
@@ -41,15 +42,15 @@ install_packages "${DEV_TOOLS[@]}"
 # animate_progress "Installing Fonts"
 # install_packages "$FONTS[@]"
 
-animate_progress "Configuring Services"
+animate_progress "⚙️ Configuring Services"
 for service in "${SERVICES[@]}"; do
     if systemctl list-unit-files | grep -q "^${service}.service"; then
         if ! systemctl is-enabled "$service" &>/dev/null; then
-            animate_progress "Enabling $service"
-            sudo systemctl enable "$service"
+            animate_progress "🧪 Enabling $service"
+            watch_execution "" sudo systemctl enable "$service"
         fi
     else
-        echo "Warning: $service is not installed or does not have a service file."
+        echo "⚠️ Warning: $service is not installed or does not have a service file."
     fi
 done
 
@@ -65,4 +66,4 @@ done
 # animate_progress "Installing flatpaks"
 # . ubuntu-flatpaks.sh
 
-echo "System Setup Completed ! You may need to reboot your system !"
+echo "🤖 All systems go! 🚀 Give your machine a fresh start with a reboot 🔁"
