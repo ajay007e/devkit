@@ -18,8 +18,8 @@ install_packages() {
 
     if [ ${#to_install[@]} -ne 0 ]; then
         echo "Installing ${to_install[*]}"
-        sudo apt update
-        sudo apt install -y "${to_install[@]}"
+        sudo apt-get update -qq >/dev/null
+        sudo apt-get install -y -qq "${to_install[@]}" >/dev/null
     fi
 }
 
