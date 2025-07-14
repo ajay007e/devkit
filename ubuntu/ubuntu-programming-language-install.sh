@@ -29,12 +29,15 @@ version=$(mysql --version)
 echo "📦 MySQL version: $version"
 
 animate_progress " Checking MongoDB"
-cmd='curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor'
-watch_execution "" bash -c "$cmd"
-DISTRO_CODENAME=$(lsb_release -c -s 2>/dev/null)
-cmd="echo \"deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu $DISTRO_CODENAME/mongodb-org/8.0 multiverse\" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list"
-watch_execution "" bash -c "$cmd"
-watch_execution "" sudo apt-get update
-install_packages mongodb-org
+
+if ! command -v mongod &>/dev/null; then
+    cmd='curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor'
+    watch_execution "" bash -c "$cmd"
+    DISTRO_CODENAME=$(lsb_release -c -s 2>/dev/null)
+    cmd="echo \"deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu $DISTRO_CODENAME/mongodb-org/8.0 multiverse\" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list"
+    watch_execution "" bash -c "$cmd"
+    watch_execution "" sudo apt-get update
+    install_packages mongodb-org
+fi
 version=$(mongod --version | head -n 1)
 echo "📦 MongoDB version: $version"
