@@ -29,7 +29,7 @@ install_packages "${SYSTEM_UTILS[@]}"
 
 animate_progress "🛠️ Installing Development Tools"
 install_packages "${DEV_TOOLS[@]}"
-
+. "$SCRIPT_DIR/ubuntu-dev-tools-install.sh"
 # animate_progress "Installing System Maintenance Tools"
 # install_packages "${MAINTENANCE[@]}"
 #
