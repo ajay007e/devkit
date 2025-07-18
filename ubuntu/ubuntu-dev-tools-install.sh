@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# docker installation
+#######################
+# DOCKER INSTALLATION #
+#######################
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
     watch_execution "" sudo apt-get remove $pkg
 done
@@ -21,3 +23,19 @@ sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 watch_execution "" sudo apt-get update
 install_packages docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+######################
+# ZSH CONFIGURARTION #
+######################
+
+# installing oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# configurating the zshrc
+cp ../ubuntu/config/.zshrc ~/.zshrc
+mkdir -p ~/.config/zsh
+cp ../ubuntu/config/zsh/* ~/.config/zsh/
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/reobin/typewritten.git ~/.config/zsh/typewritten"
+source ~/.zshrc
