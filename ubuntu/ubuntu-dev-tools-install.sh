@@ -29,12 +29,15 @@ install_packages docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 ######################
 
 # installing oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+#git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+chsh -s $(which zsh)
 # configurating the zshrc
-cp ../ubuntu/config/.zshrc ~/.zshrc
+[ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
+# Get the directory of this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp "$SCRIPT_DIR/../config/.zshrc" ~/.zshrc
 mkdir -p ~/.config/zsh
-cp ../ubuntu/config/zsh/* ~/.config/zsh/
+cp "$SCRIPT_DIR/../config/zsh/*" ~/.config/zsh/
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/reobin/typewritten.git ~/.config/zsh/typewritten"
