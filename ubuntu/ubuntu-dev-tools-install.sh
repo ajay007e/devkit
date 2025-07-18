@@ -50,11 +50,11 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 #######################
 # TMUX CONFIGURARTION #
 #######################
-cp "$SCRIPT_DIR/config/tmux" ~/.config/tmux
+cp -r "$SCRIPT_DIR/config/tmux" ~/.config/tmux
 tmux source-file ~/.config/tmux/tmux.conf
 
 #########################
 # NEOVIM CONFIGURARTION #
 #########################
-cp "$SCRIPT_DIR/config/nvim" ~/.config/nvim
+cp -r "$SCRIPT_DIR/config/nvim" ~/.config/nvim
 cp "$SCRIPT_DIR/config/.vimrc" ~/.vimrc
