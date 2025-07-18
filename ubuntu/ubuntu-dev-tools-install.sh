@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 #######################
 # DOCKER INSTALLATION #
 #######################
@@ -28,13 +30,9 @@ install_packages docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 # ZSH CONFIGURARTION #
 ######################
 
-# installing oh-my-zsh
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/oh-my-zsh
 # chsh -s $(which zsh) && zsh # TODO: execute this command at the end of the ubuntu.sh
-# configurating the zshrc
 [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
-# Get the directory of this script
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cp "$SCRIPT_DIR/config/.zshrc" ~/.zshrc
 cp -f "$SCRIPT_DIR/config/.zshenv" ~/.zshenv
 mkdir -p ~/.config/zsh
@@ -48,3 +46,15 @@ git clone https://github.com/reobin/typewritten.git ~/.config/zsh/typewritten
 #######################
 
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+#######################
+# TMUX CONFIGURARTION #
+#######################
+cp "$SCRIPT_DIR/config/tmux" ~/.config/tmux
+tmux source-file ~/.config/tmux/tmux.conf
+
+#########################
+# NEOVIM CONFIGURARTION #
+#########################
+cp "$SCRIPT_DIR/config/nvim" ~/.config/nvim
+cp "$SCRIPT_DIR/config/.vimrc" ~/.vimrc
