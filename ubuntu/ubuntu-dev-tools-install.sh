@@ -29,13 +29,14 @@ install_packages docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 ######################
 
 # installing oh-my-zsh
-#git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-chsh -s $(which zsh)
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/oh-my-zsh
+chsh -s $(which zsh) && zsh
 # configurating the zshrc
 [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
 # Get the directory of this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cp "$SCRIPT_DIR/config/.zshrc" ~/.zshrc
+cp -f "$SCRIPT_DIR/config/.zshenv" ~/.zshenv
 mkdir -p ~/.config/zsh
 cp -r "$SCRIPT_DIR/config/zsh/." ~/.config/zsh/
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
