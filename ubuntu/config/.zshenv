@@ -1,4 +1,4 @@
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+# [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # Secrets
 [ -f "$HOME/.env" ] && source "$HOME/.env"
@@ -39,4 +39,4 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 # Hide computer name in terminal
 export DEFAULT_USER="$(whoami)"
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

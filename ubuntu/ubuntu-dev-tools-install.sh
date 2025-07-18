@@ -30,7 +30,7 @@ install_packages docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 # installing oh-my-zsh
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/oh-my-zsh
-chsh -s $(which zsh) && zsh
+# chsh -s $(which zsh) && zsh # TODO: execute this command at the end of the ubuntu.sh
 # configurating the zshrc
 [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.backup
 # Get the directory of this script
@@ -42,4 +42,9 @@ cp -r "$SCRIPT_DIR/config/zsh/." ~/.config/zsh/
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/reobin/typewritten.git ~/.config/zsh/typewritten
-source ~/.zshrc
+
+#######################
+# ZOXIDE INSTALLATION #
+#######################
+
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
