@@ -2,7 +2,7 @@
 
 # Function to check if a package is installed (Debian/Ubuntu)
 is_installed() {
-    dpkg -l "$1" &>/dev/null
+    dpkg -s "$1" &>/dev/null
 }
 
 # Function to install packages if not already installed

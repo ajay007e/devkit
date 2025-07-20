@@ -22,7 +22,7 @@ watch_execution "✅ System updated successfully!" bash -c "$cmd"
 
 # Install only missing packages
 animate_progress "👨‍💻 Setting up Programming Languages "
-. "$SCRIPT_DIR/ubuntu-programming-language-install.sh"
+#. "$SCRIPT_DIR/ubuntu-programming-language-install.sh"
 
 animate_progress "🧩 Installing System Utilities"
 install_packages "${SYSTEM_UTILS[@]}"
